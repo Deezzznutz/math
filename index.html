@@ -83,6 +83,7 @@
         .leaderboard {
             margin-top: 40px;
             font-size: 16px;
+            text-align: center;
         }
 
         .leaderboard h2 {
@@ -133,7 +134,6 @@
             <input type="text" id="name-input" placeholder="Your name (leave empty for Guest)" />
 
             <label for="time-select">Select game duration:</label>
-            <!-- Only 60 seconds option available -->
             <select id="time-select">
                 <option value="60">60 seconds</option>
             </select>
@@ -176,6 +176,13 @@
                 listItem.textContent = `${index + 1}. ${entry.name} - ${entry.score} points`;
                 leaderboardList.appendChild(listItem);
             });
+
+            // If no scores are available, display a message
+            if (leaderboard.length === 0) {
+                const noScoresMessage = document.createElement('li');
+                noScoresMessage.textContent = "No scores yet. Play the game to get started!";
+                leaderboardList.appendChild(noScoresMessage);
+            }
         }
 
         // Generate a new question
